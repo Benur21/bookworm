@@ -15,9 +15,12 @@ function LetterSoup(props: LetterSoupTypes): JSX.Element {
       {matrix.map((line, lineIndex) =>
         line.map((letter, colIndex) => (
           <Letter
-            x={60 * lineIndex + x}
-            y={60 * colIndex + y}
+            parentX = {x}
+            parentY = {y}
+            x={lineIndex}
+            y={colIndex}
             onClick={onLetterClick}
+            key={lineIndex+","+colIndex}
           >
             {letter}
           </Letter>

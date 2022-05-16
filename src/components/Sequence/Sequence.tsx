@@ -1,8 +1,9 @@
+import { CurrentSequence } from "../../helpers/types";
 import Letter from "../Letter/Letter";
 
 interface SequenceTypes {
   y: number;
-  sequence: string;
+  sequence: CurrentSequence;
   onLetterClick: Function;
 }
 
@@ -13,9 +14,16 @@ function Sequence(props: SequenceTypes): JSX.Element {
   
   return (
     <>
-      {sequence.split('').map((letter, index) => (
-        <Letter x={x + index * 60} y={y} onClick={onLetterClick}>
-          {letter}
+      {sequence.map((letter, index) => (
+        <Letter
+          parentX={x}
+          parentY={y}
+          x={index}
+          y={0}
+          onClick={onLetterClick}
+          key={index}
+        >
+          {letter.char}
         </Letter>
       ))}
     </>

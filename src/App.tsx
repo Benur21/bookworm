@@ -2,9 +2,10 @@
 import { useEffect, useState } from 'react';
 import LetterSoup from './components/LetterSoup/LetterSoup';
 import Sequence from './components/Sequence/Sequence';
+import { CurrentSequence } from './helpers/types';
 
 function App(): JSX.Element {
-  const [sequence, setSequence] = useState("");
+  const [sequence, setSequence] = useState<CurrentSequence>([]);
   const [matrix, setMatrix] = useState<Array<Array<string>>>([]);
   
   const runAtStart = async () => {
@@ -23,18 +24,29 @@ function App(): JSX.Element {
 
   useEffect(() => {
     runAtStart();
-
+    
     return () => {
       for (let i = 0; i <= Number(setTimeout(() => {}, 0)); i++) clearTimeout(i);
     };
   }, []);
   
-  const letterClickHandler = (new_letter: string) => {
-    setSequence(prevSequence => prevSequence + new_letter);
+  useEffect(() => {
+    console.log(sequence);
+  }, [sequence]);
+  
+  const letterAddHandler = (new_letter: string, x: number, y: number) => {
+    setSequence(prevSequence => [
+      ...prevSequence,
+      {
+        char: new_letter,
+        left: x,
+        top: y,
+      },
+    ]);
   };
 
   const letterRemoveHandler = (new_letter: string) => {
-    setSequence(prevSequence => "");
+    // setSequence(prevSequence => "");
   };
 
   return (
@@ -44,7 +56,7 @@ function App(): JSX.Element {
         x={window.innerWidth / 2 - 230 / 2}
         y={400}
         matrix={matrix}
-        onLetterClick={letterClickHandler}
+        onLetterClick={letterAddHandler}
       />
       adsad
     </div>

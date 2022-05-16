@@ -1,5 +1,7 @@
 
 interface LetterTypes {
+  parentX: number;
+  parentY: number;
   x: number;
   y: number;
   children: string;
@@ -7,16 +9,16 @@ interface LetterTypes {
 }
 
 function Letter(props: LetterTypes): JSX.Element {
-  const { x, y, children, onClick = () => {} } = props;
+  const { parentX, parentY, x, y, children, onClick = () => {} } = props;
   
   const onLetterClickHandler = () => {
-    onClick(children);
+    onClick(children, x, y);
   }
   
   return (
     <div
       className="letter"
-      style={{ top: y, left: x }}
+      style={{ top: parentY + 60*y, left: parentX + 60*x }}
       onClick={onLetterClickHandler}
     >
       {children}
