@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import LetterSoup from './components/LetterSoup/LetterSoup';
 import Sequence from './components/Sequence/Sequence';
-import { CurrentSequence } from './helpers/types';
+import { CurrentSequence, LetterType } from './helpers/types';
 
 function App(): JSX.Element {
   const [sequence, setSequence] = useState<CurrentSequence>([]);
@@ -34,15 +34,8 @@ function App(): JSX.Element {
     console.log(sequence);
   }, [sequence]);
   
-  const letterAddHandler = (new_letter: string, x: number, y: number) => {
-    setSequence(prevSequence => [
-      ...prevSequence,
-      {
-        char: new_letter,
-        left: x,
-        top: y,
-      },
-    ]);
+  const letterAddHandler = (new_letter: LetterType) => {
+    setSequence(prevSequence => [...prevSequence, new_letter]);
   };
 
   const letterRemoveHandler = (new_letter: string) => {
