@@ -17,13 +17,14 @@ function LetterSoup(props: LetterSoupTypes): JSX.Element {
           <Letter
             parentX = {x}
             parentY = {y}
-            x={lineIndex}
-            y={colIndex}
+            letter={{
+              left: lineIndex,
+              top: colIndex,
+              char: letter,
+            }}
             onClick={onLetterClick}
             key={lineIndex+","+colIndex}
-          >
-            {letter}
-          </Letter>
+          />
         ))
       )}
     </div>

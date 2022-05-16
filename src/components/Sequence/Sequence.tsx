@@ -18,13 +18,14 @@ function Sequence(props: SequenceTypes): JSX.Element {
         <Letter
           parentX={x}
           parentY={y}
-          x={index}
-          y={0}
+          letter={{
+            left: index,
+            top: 0,
+            char: letter.char,
+          }}
           onClick={onLetterClick}
           key={index}
-        >
-          {letter.char}
-        </Letter>
+        />
       ))}
     </>
   );

@@ -1,27 +1,29 @@
+import { LetterType } from "../../helpers/types";
 
 interface LetterTypes {
   parentX: number;
   parentY: number;
-  x: number;
-  y: number;
-  children: string;
+  letter: LetterType;
   onClick?: Function;
 }
 
 function Letter(props: LetterTypes): JSX.Element {
-  const { parentX, parentY, x, y, children, onClick = () => {} } = props;
+  const { parentX, parentY, letter, onClick = () => {} } = props;
   
   const onLetterClickHandler = () => {
-    onClick(children, x, y);
+    onClick(letter.char, letter.left, letter.top);
   }
   
   return (
     <div
       className="letter"
-      style={{ top: parentY + 60*y, left: parentX + 60*x }}
+      style={{
+        top: parentY + 60 * letter.top,
+        left: parentX + 60 * letter.left,
+      }}
       onClick={onLetterClickHandler}
     >
-      {children}
+      {letter.char}
     </div>
   );
 }
