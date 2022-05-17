@@ -38,8 +38,9 @@ function App(): JSX.Element {
     setSequence(prevSequence => [...prevSequence, new_letter]);
   };
 
-  const letterRemoveHandler = (new_letter: string) => {
-    // setSequence(prevSequence => "");
+  const letterRemoveHandler = (letter_to_remove: string) => {
+    console.log("~ letter_to_remove", letter_to_remove);
+    // setSequence(prevSequence => prevSequence);
   };
 
   return (

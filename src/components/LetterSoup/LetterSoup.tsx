@@ -10,20 +10,30 @@ interface LetterSoupTypes {
 function LetterSoup(props: LetterSoupTypes): JSX.Element {
   const { x, y, matrix, onLetterClick } = props;
 
+  /*
+   * Example matrix:
+   * [ line1,
+   *   line2,
+   *   line3,
+   *   line4 ]
+   *   
+   * Example line:
+   * [col1, col2, col3, col4]
+   */
   return (
     <div className="letter_soup" style={{ top: y, left: x }}>
       {matrix.map((line, lineIndex) =>
         line.map((letter, colIndex) => (
           <Letter
-            parentX = {x}
-            parentY = {y}
+            x={x + 60 * lineIndex}
+            y={y + 60 * colIndex}
             letter={{
               left: lineIndex,
               top: colIndex,
               char: letter,
             }}
             onClick={onLetterClick}
-            key={lineIndex+","+colIndex}
+            key={lineIndex + ',' + colIndex}
           />
         ))
       )}

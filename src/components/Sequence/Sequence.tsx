@@ -16,13 +16,9 @@ function Sequence(props: SequenceTypes): JSX.Element {
     <>
       {sequence.map((letter, index) => (
         <Letter
-          parentX={x}
-          parentY={y}
-          letter={{
-            left: index,
-            top: 0,
-            char: letter.char,
-          }}
+          x={x + 60 * index}
+          y={y}
+          letter={letter}
           onClick={onLetterClick}
           key={index}
         />
