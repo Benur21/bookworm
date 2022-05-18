@@ -16,7 +16,7 @@ function Letter(props: LetterTypes): JSX.Element {
   } = props;
   
   const onLetterClickHandler = () => {
-    onClick(letter);
+    onClick(letter, x);
   }
   
   return (

@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import LetterSoup from './components/LetterSoup/LetterSoup';
 import Sequence from './components/Sequence/Sequence';
+import { letterSize } from './helpers/consts';
 import { CurrentSequence, LetterType } from './helpers/types';
 
 function App(): JSX.Element {
@@ -30,17 +31,23 @@ function App(): JSX.Element {
     };
   }, []);
   
-  useEffect(() => {
-    console.log(sequence);
-  }, [sequence]);
-  
   const letterAddHandler = (new_letter: LetterType) => {
     setSequence(prevSequence => [...prevSequence, new_letter]);
   };
 
-  const letterRemoveHandler = (letter_to_remove: string) => {
-    console.log("~ letter_to_remove", letter_to_remove);
-    // setSequence(prevSequence => prevSequence);
+  const sequence_x = window.innerWidth/2 - sequence.length*letterSize/2;
+  
+  const letterRemoveHandler = (
+    letter_to_remove: string, // I seriously don't need this?!? O_O 
+    x_coord: number
+  ) => {
+    // Calculate the coordinates of each letter in the sequence and remove the
+    // one in the received coordinate (only x is needed)
+    setSequence(prevSequence =>
+      prevSequence.filter(
+        (_, index) => sequence_x + letterSize * index !== x_coord
+      )
+    );
   };
 
   return (
