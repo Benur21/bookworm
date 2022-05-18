@@ -32,13 +32,24 @@ function App(): JSX.Element {
   }, []);
   
   const letterAddHandler = (new_letter: LetterType) => {
+    // add letter to sequence
     setSequence(prevSequence => [...prevSequence, new_letter]);
+    // remove letter from sequence
+    setMatrix(prevMatrix =>
+      prevMatrix.map((line, line_index) =>
+        line.map((_, col_index) =>
+          line_index === new_letter.left && col_index === new_letter.top
+            ? ''
+            : prevMatrix[line_index][col_index]
+        )
+      )
+    );
   };
 
   const sequence_x = window.innerWidth/2 - sequence.length*letterSize/2;
   
   const letterRemoveHandler = (
-    letter_to_remove: string, // I seriously don't need this?!? O_O 
+    letter_to_remove: string,
     x_coord: number
   ) => {
     // Calculate the coordinates of each letter in the sequence and remove the

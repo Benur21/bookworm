@@ -24,19 +24,22 @@ function LetterSoup(props: LetterSoupTypes): JSX.Element {
   return (
     <div className="letter_soup" style={{ top: y, left: x }}>
       {matrix.map((line, lineIndex) =>
-        line.map((letter, colIndex) => (
-          <Letter
-            x={x + letterSize * lineIndex}
-            y={y + letterSize * colIndex}
-            letter={{
-              left: lineIndex,
-              top: colIndex,
-              char: letter,
-            }}
-            onClick={onLetterClick}
-            key={lineIndex + ',' + colIndex}
-          />
-        ))
+        line.map(
+          (letter, colIndex) =>
+            letter && (
+              <Letter
+                x={x + letterSize * lineIndex}
+                y={y + letterSize * colIndex}
+                letter={{
+                  left: lineIndex,
+                  top: colIndex,
+                  char: letter,
+                }}
+                onClick={onLetterClick}
+                key={lineIndex + ',' + colIndex}
+              />
+            )
+        )
       )}
     </div>
   );
