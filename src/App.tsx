@@ -49,7 +49,7 @@ function App(): JSX.Element {
   const sequence_x = window.innerWidth/2 - sequence.length*letterSize/2;
   
   const letterRemoveHandler = (
-    letter_to_remove: string,
+    letter_to_remove: LetterType,
     x_coord: number
   ) => {
     // Calculate the coordinates of each letter in the sequence and remove the
@@ -59,11 +59,22 @@ function App(): JSX.Element {
         (_, index) => sequence_x + letterSize * index !== x_coord
       )
     );
+    
+    // Add the letter back to the matrix
+    setMatrix(prevMatrix => {
+      const newMatrix = prevMatrix;
+      newMatrix[letter_to_remove.left][letter_to_remove.top] = letter_to_remove.char;
+      return newMatrix;
+    });
   };
 
   return (
     <div className="App">
-      <Sequence y={100} sequence={sequence} onLetterClick={letterRemoveHandler}/>
+      <Sequence
+        y={100}
+        sequence={sequence}
+        onLetterClick={letterRemoveHandler}
+      />
       <LetterSoup
         x={window.innerWidth / 2 - 230 / 2}
         y={400}
