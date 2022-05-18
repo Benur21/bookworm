@@ -13,8 +13,8 @@ code {
 
 .letter {
   
-  --width: 50px;
-  --height: 50px;
+  --width: 60px;
+  --height: 60px;
   
   width: var(--width);
   height: var(--height);
@@ -30,3 +30,15 @@ code {
   font-size: 31px;
 }
 
+* {
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+
+  /*
+    Introduced in IE 10.
+    See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
+  */
+  -ms-user-select: none;
+  user-select: none;
+}

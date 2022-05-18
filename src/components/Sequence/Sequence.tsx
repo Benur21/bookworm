@@ -1,3 +1,4 @@
+import { letterSize } from "../../helpers/consts";
 import { CurrentSequence } from "../../helpers/types";
 import Letter from "../Letter/Letter";
 
@@ -10,13 +11,13 @@ interface SequenceTypes {
 function Sequence(props: SequenceTypes): JSX.Element {
   const { y, sequence, onLetterClick } = props;
   
-  const x = window.innerWidth/2 - sequence.length*60/2;
+  const x = window.innerWidth/2 - sequence.length*letterSize/2;
   
   return (
     <>
       {sequence.map((letter, index) => (
         <Letter
-          x={x + 60 * index}
+          x={x + letterSize * index}
           y={y}
           letter={letter}
           onClick={onLetterClick}

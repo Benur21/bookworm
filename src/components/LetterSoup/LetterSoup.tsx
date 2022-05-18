@@ -1,3 +1,4 @@
+import { letterSize } from '../../helpers/consts';
 import Letter from '../Letter/Letter';
 
 interface LetterSoupTypes {
@@ -25,8 +26,8 @@ function LetterSoup(props: LetterSoupTypes): JSX.Element {
       {matrix.map((line, lineIndex) =>
         line.map((letter, colIndex) => (
           <Letter
-            x={x + 60 * lineIndex}
-            y={y + 60 * colIndex}
+            x={x + letterSize * lineIndex}
+            y={y + letterSize * colIndex}
             letter={{
               left: lineIndex,
               top: colIndex,
