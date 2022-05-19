@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import LetterSoup from './components/LetterSoup/LetterSoup';
 import Sequence from './components/Sequence/Sequence';
-import { letterSize } from './helpers/consts';
+import { letterSize, matrixSize } from './helpers/consts';
 import { CurrentSequence, LetterType } from './helpers/types';
 
 function App(): JSX.Element {
@@ -13,10 +13,10 @@ function App(): JSX.Element {
     const letters = "abcdefghijklmnopqrstuvwxyz";
   
     let new_matrix = [];
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < matrixSize; i++) {
       let line : any = [];
-      for (let j = 0; j < 4; j++) {
-        line.push(letters[Math.floor(Math.random()*26)]);
+      for (let j = 0; j < matrixSize; j++) {
+        line.push(letters[Math.floor(Math.random() * letters.length)]);
       }
       new_matrix.push(line);
     }
@@ -76,7 +76,7 @@ function App(): JSX.Element {
         onLetterClick={letterRemoveHandler}
       />
       <LetterSoup
-        x={window.innerWidth / 2 - 230 / 2}
+        x={window.innerWidth / 2 - (letterSize * matrixSize) / 2}
         y={400}
         matrix={matrix}
         onLetterClick={letterAddHandler}

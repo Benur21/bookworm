@@ -21,14 +21,16 @@ function Letter(props: LetterTypes): JSX.Element {
   
   return (
     <div
-      className="letter"
+      className="letterBorder"
       style={{
         left: x,
         top: y,
       }}
       onClick={onLetterClickHandler}
     >
-      {letter.char}
+      <div className="letter">
+        {letter.char}
+      </div>
     </div>
   );
 }

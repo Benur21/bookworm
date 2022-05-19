@@ -1,3 +1,4 @@
+import calcLetterPos from '../../helpers/calcLetterPos';
 import { letterSize } from '../../helpers/consts';
 import Letter from '../Letter/Letter';
 
@@ -28,8 +29,8 @@ function LetterSoup(props: LetterSoupTypes): JSX.Element {
           (letter, colIndex) =>
             letter && (
               <Letter
-                x={x + letterSize * lineIndex}
-                y={y + letterSize * colIndex}
+                x={calcLetterPos(x, lineIndex)}
+                y={calcLetterPos(y, colIndex)}
                 letter={{
                   left: lineIndex,
                   top: colIndex,
