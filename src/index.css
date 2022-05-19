@@ -11,9 +11,13 @@ body {
   color: white;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+* {
+  /* Prevent selections in entire page */
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .letter {
@@ -33,6 +37,8 @@ code {
 .letterBorder {
   width: calc(var(--letterSize) + var(--letterBorderSize));
   height: calc(var(--letterSize) + var(--letterBorderSize));
+  
+  /* position absolute is important to allow use of top and left*/
   position: absolute;
   
   box-sizing: border-box;
@@ -40,15 +46,15 @@ code {
   padding: 2px;
 }
 
-* {
-  -moz-user-select: -moz-none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-
-  /*
-    Introduced in IE 10.
-    See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
-  */
-  -ms-user-select: none;
-  user-select: none;
+.attackButton {
+  width: calc(var(--letterSize) * 4);
+  height: 50px;
+  
+  /* position absolute is important to allow use of top and left*/
+  position: absolute;
+  
+  background-color: greenyellow;
+  color: black;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 31px;
 }

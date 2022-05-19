@@ -1,4 +1,4 @@
-import { letterSize } from "./consts";
+import { letterSize } from "../consts";
 
 /**
  * Calculates the position of a letter given the starting position and the index.

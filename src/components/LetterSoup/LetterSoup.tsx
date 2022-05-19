@@ -1,5 +1,4 @@
-import calcLetterPos from '../../helpers/calcLetterPos';
-import { letterSize } from '../../helpers/consts';
+import calcLetterPos from '../../helpers/formulas/calcLetterPos';
 import Letter from '../Letter/Letter';
 
 interface LetterSoupTypes {

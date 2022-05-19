@@ -1,8 +1,10 @@
 
 import { useEffect, useState } from 'react';
+import AttackButton from './components/AttackButton/AttackButton';
 import LetterSoup from './components/LetterSoup/LetterSoup';
 import Sequence from './components/Sequence/Sequence';
 import { letterSize, matrixSize } from './helpers/consts';
+import calcLetterSoupPos from './helpers/formulas/calcLetterSoupPos';
 import { CurrentSequence, LetterType } from './helpers/types';
 
 function App(): JSX.Element {
@@ -76,12 +78,15 @@ function App(): JSX.Element {
         onLetterClick={letterRemoveHandler}
       />
       <LetterSoup
-        x={window.innerWidth / 2 - (letterSize * matrixSize) / 2}
-        y={400}
+        x={calcLetterSoupPos()}
+        y={350}
         matrix={matrix}
         onLetterClick={letterAddHandler}
       />
-      adsad
+      <AttackButton
+        x={calcLetterSoupPos()}
+        y={600}
+      />
     </div>
   );
 }
