@@ -85,7 +85,7 @@ function App(): JSX.Element {
       />
       <AttackButton
         x={calcLetterSoupPos()}
-        y={600}
+        y={200}
       />
     </div>
   );
