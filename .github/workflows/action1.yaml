@@ -4,6 +4,7 @@ jobs:
   do-my-thing-xD:
     runs-on: ubuntu-latest
     steps:
+      - run: cd ..
       - run: ls
       - run: pwd
       - run: yarn run deploy
