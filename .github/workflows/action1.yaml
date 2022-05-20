@@ -14,6 +14,6 @@ jobs:
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
-      - run: curl -H 'Authorization${{":"}} token ${{ secrets.GITHUB_TOKEN }}' https://github.com/Benur21/bookworm.git 
+      - run: curl -H 'Authorization${{:}} token ${{ secrets.GITHUB_TOKEN }}' https://github.com/Benur21/bookworm.git 
       - run: yarn && yarn run deploy
       - run: echo "🍏 This job's status is ${{ job.status }}."
