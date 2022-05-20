@@ -1,7 +1,9 @@
 name: action-to-publish-app
 on: [push]
 jobs:
-  write-to-console:
+  do-my-thing-xD:
     runs-on: ubuntu-latest
     steps:
+      - run: ls
+      - run: pwd
       - run: yarn run deploy
