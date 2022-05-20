@@ -5,7 +5,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: help
-      - run: git branch
       - run: echo "$(ls -l -a)"
       - run: ls -l -a
       - run: cd ..
