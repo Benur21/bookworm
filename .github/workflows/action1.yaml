@@ -5,9 +5,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: help
-      - run: echo "$(ls -l -a)"
-      - run: ls -l -a
-      - run: cd ..
-      - run: ls
-      - run: pwd
-      - run: yarn run deploy
+      - run: |
+              pwd
+              ls -l -a
+              cd ..
+              pwd
+              ls -l -a
+              yarn run deploy
