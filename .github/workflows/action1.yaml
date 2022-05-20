@@ -14,8 +14,8 @@ jobs:
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
-      - run: |
-          git push https://${{ secrets.GITHUB_TOKEN }}@github.com/Benur21/bookworm.git
-      - run: yarn && yarn run deploy
+      - run: yarn && yarn run deploy --repo https://${{ secrets.GITHUB_TOKEN }}@github.com/Benur21/bookworm.git
       - run: echo "🍏 This job's status is ${{ job.status }}."
+      # - run: |
+      #     git push https://${{ secrets.GITHUB_TOKEN }}@github.com/Benur21/bookworm.git
       # ${{ secrets.GITHUB_TOKEN }}
