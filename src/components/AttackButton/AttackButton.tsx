@@ -16,7 +16,7 @@ function AttackButton(props: AttackButtonTypes): JSX.Element {
       }}
       // onClick={buttonClickHandler}
     >
-      Attack
+      FOGO JÁ ATUALIZA AUTOMATICAMENTE FINALMENTE!!!
     </button>
   );
 }
