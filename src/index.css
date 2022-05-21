@@ -53,7 +53,7 @@ body {
   /* position absolute is important to allow use of top and left*/
   position: absolute;
   
-  background-color: pink;
+  background-color: purple;
   color: black;
   font-family: 'Times New Roman', Times, serif;
   font-size: 31px;
