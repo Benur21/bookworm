@@ -1,19 +1,27 @@
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import AttackButton from './components/AttackButton/AttackButton';
 import LetterSoup from './components/LetterSoup/LetterSoup';
 import Sequence from './components/Sequence/Sequence';
+import clearAllTimeouts from './helpers/clearAllTimeouts';
 import { letterSize, matrixSize } from './helpers/consts';
+import getWords from './helpers/dictionaries';
 import calcLetterSoupPos from './helpers/formulas/calcLetterSoupPos';
+import normalize from './helpers/formulas/normalize';
+import instaDelay from './helpers/instaDelay';
+import repeat from './helpers/repeat';
 import { CurrentSequence, LetterType } from './helpers/types';
 
 function App(): JSX.Element {
+  const [currValidWord, setCurrValidWord] = useState<string>('');
+  const [dictWords, setDictWords] = useState<Array<string>>([]);
   const [sequence, setSequence] = useState<CurrentSequence>([]);
   const [matrix, setMatrix] = useState<Array<Array<string>>>([]);
   
   const runAtStart = async () => {
     const letters = "abcdefghijklmnopqrstuvwxyz";
   
+    // make random matrix
     let new_matrix = [];
     for (let i = 0; i < matrixSize; i++) {
       let line : any = [];
@@ -23,15 +31,61 @@ function App(): JSX.Element {
       new_matrix.push(line);
     }
     setMatrix(new_matrix);
+    // setMatrix([
+    //   ['a', 'a', 'b', 'o'],
+    //   ['b', 'a', 'c', 'z'],
+    //   ['m', 'e', 'u', 'a'],
+    //   ['a', 'i', 'n', 'm'],
+    // ]);
+    
+    console.time("loadingWords");
+    setDictWords(await getWords());
+    console.timeEnd("loadingWords");
   };
 
+  /**
+   * Verifies if the word in the sequence is valid or not.
+   * If it's valid it will add an effect to the Sequence.
+   */
+  const checkWord = useCallback(async () => {
+    // Figure out what's written in the sequence
+    let currentWord = '';
+    repeat(sequence.length, (i: number) => {
+      currentWord += sequence[i].char;
+    });
+
+    // reset while processing
+    setCurrValidWord('');
+    
+    // Find if the word is in the dictionary
+    let valid = '';
+    let i = 0;
+    for (const word of dictWords) {
+      if (normalize(currentWord) === normalize(word)) {
+        valid = word;
+      }
+      if (i % 10000 === 0) {
+        // give time to other threads every once in a while
+        await instaDelay();
+      }
+      i++;
+    }
+
+    valid && console.log(valid);
+    setCurrValidWord(valid);
+  }, [sequence, dictWords]);
+  
   useEffect(() => {
     runAtStart();
-    
-    return () => {
-      for (let i = 0; i <= Number(setTimeout(() => {}, 0)); i++) clearTimeout(i);
-    };
+
+    return () => clearAllTimeouts();
   }, []);
+  
+  useEffect(() => {
+    checkWord();
+
+    return () => clearAllTimeouts();
+  }, [sequence, checkWord]);
   
   const letterAddHandler = (new_letter: LetterType) => {
     // add letter to sequence
@@ -76,6 +130,7 @@ function App(): JSX.Element {
         y={100}
         sequence={sequence}
         onLetterClick={letterRemoveHandler}
+        valid={currValidWord}
       />
       <LetterSoup
         x={calcLetterSoupPos()}

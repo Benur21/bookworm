@@ -34,6 +34,14 @@ body {
   font-size: 31px;
 }
 
+.letter.bright {
+  background-color: #99cc22;
+}
+
+.letterBorder.bright {
+  background-color: red;
+}
+
 .letterBorder {
   width: calc(var(--letterSize) + var(--letterBorderSize));
   height: calc(var(--letterSize) + var(--letterBorderSize));

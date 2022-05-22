@@ -1,9 +1,11 @@
+import normalize from "../../helpers/formulas/normalize";
 import { LetterType } from "../../helpers/types";
 
 interface LetterTypes {
   x: number;
   y: number;
   letter: LetterType;
+  bright?: boolean;
   onClick?: Function;
 }
 
@@ -12,25 +14,24 @@ function Letter(props: LetterTypes): JSX.Element {
     x,
     y,
     letter,
+    bright = false,
     onClick = () => {},
   } = props;
   
   const onLetterClickHandler = () => {
-    onClick(letter, x);
+    onClick({...letter, char: normalize(letter.char)}, x);
   }
   
   return (
     <div
-      className="letterBorder"
+      className={`letterBorder ${bright ? 'bright' : ''}`}
       style={{
         left: x,
         top: y,
       }}
       onClick={onLetterClickHandler}
     >
-      <div className="letter">
-        {letter.char}
-      </div>
+      <div className={`letter ${bright ? 'bright' : ''}`}>{letter.char}</div>
     </div>
   );
 }
