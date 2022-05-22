@@ -19,24 +19,24 @@ function App(): JSX.Element {
   const [matrix, setMatrix] = useState<Array<Array<string>>>([]);
   
   const runAtStart = async () => {
-    const letters = "abcdefghijklmnopqrstuvwxyz";
+    // const letters = "abcdefghijklmnopqrstuvwxyz";
   
     // make random matrix
-    let new_matrix = [];
-    for (let i = 0; i < matrixSize; i++) {
-      let line : any = [];
-      for (let j = 0; j < matrixSize; j++) {
-        line.push(letters[Math.floor(Math.random() * letters.length)]);
-      }
-      new_matrix.push(line);
-    }
-    setMatrix(new_matrix);
-    // setMatrix([
-    //   ['a', 'a', 'b', 'o'],
-    //   ['b', 'a', 'c', 'z'],
-    //   ['m', 'e', 'u', 'a'],
-    //   ['a', 'i', 'n', 'm'],
-    // ]);
+    // let new_matrix = [];
+    // for (let i = 0; i < matrixSize; i++) {
+    //   let line : any = [];
+    //   for (let j = 0; j < matrixSize; j++) {
+    //     line.push(letters[Math.floor(Math.random() * letters.length)]);
+    //   }
+    //   new_matrix.push(line);
+    // }
+    // setMatrix(new_matrix);
+    setMatrix([
+      ['a', 'a', 'b', 'o'],
+      ['b', 'a', 'c', 'z'],
+      ['m', 'e', 'u', 'a'],
+      ['a', 'i', 'n', 'm'],
+    ]);
     
     console.time("loadingWords");
     setDictWords(await getWords());
@@ -123,6 +123,22 @@ function App(): JSX.Element {
       return newMatrix;
     });
   };
+  
+  const scramble = () => {
+    setSequence([]);
+    
+    const letters = "abcdefghijklmnopqrstuvwxyz";
+    // make random matrix
+    let new_matrix = [];
+    for (let i = 0; i < matrixSize; i++) {
+      let line : any = [];
+      for (let j = 0; j < matrixSize; j++) {
+        line.push(letters[Math.floor(Math.random() * letters.length)]);
+      }
+      new_matrix.push(line);
+    }
+    setMatrix(new_matrix);
+  }
 
   return (
     <div className="App">
@@ -142,6 +158,7 @@ function App(): JSX.Element {
         x={calcLetterSoupPos()}
         y={600}
       />
+      <button onClick={scramble}>scramble</button>
     </div>
   );
 }
