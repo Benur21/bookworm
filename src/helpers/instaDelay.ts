@@ -7,7 +7,7 @@
 const instaDelay = async () => {
     await (new Promise((resolve, reject) => {
         requestAnimationFrame(() => {
-            resolve();
+            resolve(null);
         });
     }));
 };
