@@ -4,3 +4,8 @@ export const letterSize = 60;
 
 export const matrixSize = 4;
 
+export enum Dicionary {
+  PT,
+  EN,
+}
+export const dictionaryLanguage: Dicionary = Dicionary.PT;
