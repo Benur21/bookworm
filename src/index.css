@@ -55,7 +55,7 @@ body {
 }
 
 .attackButton {
-  width: calc(var(--letterSize) * 4);
+  width: calc(var(--letterSize) * 4 + var(--letterBorderSize));
   height: 50px;
   
   /* position absolute is important to allow use of top and left*/
