@@ -6,8 +6,18 @@ def allTrue(list):
       return False
   return True
 
+def containsCharIn(string, charList):
+  for char in charList:
+    if char in string:
+      return True
+  return False
+  
+
 original_dicts_folder = 'src/dictionaries/original'
 parsed_dicts_folder = 'src/dictionaries/parsed'
+
+no = ['\n', 'ª', '.', "'", 'è', 'º', ' ', 'ï', 'ü', 'å', '\x92', '²', '³',
+ 'ö', 'ë', 'ñ', 'Ø', 'ø', 'µ']
 
 for file_name in os.listdir(original_dicts_folder):
   with open(f'{original_dicts_folder}/{file_name}') as f:
@@ -20,7 +30,8 @@ for file_name in os.listdir(original_dicts_folder):
     # list of all expressions which the string has to pass
     exps = [
       len(line) >= 3,
-      len(line) <= 16
+      len(line) <= 16,
+      not containsCharIn(line, no)
     ]
     if allTrue(exps):
       words.append(line)
