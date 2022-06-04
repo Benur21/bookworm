@@ -20,7 +20,13 @@ const getWords = async () => {
   // remove empty lines in start and end and convert string to array
   const words = raw.trim().split('\n');
   
-  return words
-};
+  let dict: any = {};
+  
+  words.forEach(word => {
+    dict[word] = true;
+  });
+  
+  return dict;
+}
 
 export default getWords;

@@ -14,7 +14,7 @@ import { CurrentSequence, LetterType } from './helpers/types';
 
 function App(): JSX.Element {
   const [currValidWord, setCurrValidWord] = useState<string>('');
-  const [dictWords, setDictWords] = useState<Array<string>>([]);
+  const [dictWords, setDictWords] = useState<any>({});
   const [sequence, setSequence] = useState<CurrentSequence>([]);
   const [matrix, setMatrix] = useState<Array<Array<string>>>([]);
   
