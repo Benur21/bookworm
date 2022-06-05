@@ -8,7 +8,6 @@ import { letterSize, matrixSize } from './helpers/consts';
 import getWords from './helpers/dictionaries';
 import calcLetterSoupPos from './helpers/formulas/calcLetterSoupPos';
 import normalize from './helpers/formulas/normalize';
-import instaDelay from './helpers/instaDelay';
 import repeat from './helpers/repeat';
 import { CurrentSequence, DictWords, LetterType } from './helpers/types';
 
