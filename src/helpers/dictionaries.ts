@@ -1,4 +1,6 @@
+import { DictWords } from './types';
 import { Dicionary, dictionaryLanguage } from './consts';
+import normalize from './formulas/normalize';
 
 /**
  *
@@ -20,10 +22,10 @@ const getWords = async () => {
   // remove empty lines in start and end and convert string to array
   const words = raw.trim().split('\n');
   
-  let dict: any = {};
+  let dict: DictWords = {};
   
   words.forEach(word => {
-    dict[word] = true;
+    dict[normalize(word)] = word;
   });
   
   return dict;

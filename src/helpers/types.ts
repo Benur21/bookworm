@@ -7,3 +7,6 @@ export type LetterType = {
 
 
 export type CurrentSequence = Array<LetterType>;
+
+
+export type DictWords = { [key: string]: string };

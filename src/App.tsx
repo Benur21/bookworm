@@ -10,11 +10,11 @@ import calcLetterSoupPos from './helpers/formulas/calcLetterSoupPos';
 import normalize from './helpers/formulas/normalize';
 import instaDelay from './helpers/instaDelay';
 import repeat from './helpers/repeat';
-import { CurrentSequence, LetterType } from './helpers/types';
+import { CurrentSequence, DictWords, LetterType } from './helpers/types';
 
 function App(): JSX.Element {
   const [currValidWord, setCurrValidWord] = useState<string>('');
-  const [dictWords, setDictWords] = useState<any>({});
+  const [dictWords, setDictWords] = useState<DictWords>({});
   const [sequence, setSequence] = useState<CurrentSequence>([]);
   const [matrix, setMatrix] = useState<Array<Array<string>>>([]);
   
@@ -58,21 +58,10 @@ function App(): JSX.Element {
     setCurrValidWord('');
     
     // Find if the word is in the dictionary
-    let valid = '';
-    let i = 0;
-    for (const word of dictWords) {
-      if (normalize(currentWord) === normalize(word)) {
-        valid = word;
-      }
-      if (i % 10000 === 0) {
-        // give time to other threads every once in a while
-        await instaDelay();
-      }
-      i++;
-    }
+    let valid = dictWords[normalize(currentWord)];
 
     valid && console.log(valid);
-    setCurrValidWord(valid);
+    setCurrValidWord(valid || '');
   }, [sequence, dictWords]);
   
   useEffect(() => {
