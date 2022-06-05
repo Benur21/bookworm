@@ -112,6 +112,10 @@ function App(): JSX.Element {
     });
   };
   
+  const attack = () => {
+    console.log("attack")
+  }
+  
   const scramble = () => {
     setSequence([]);
     
@@ -145,6 +149,8 @@ function App(): JSX.Element {
       <AttackButton
         x={calcLetterSoupPos()}
         y={600}
+        active={currValidWord.length > 0}
+        onClick={attack}
       />
       <button onClick={scramble}>scramble</button>
     </div>

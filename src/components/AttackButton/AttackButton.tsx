@@ -2,19 +2,22 @@
 interface AttackButtonTypes {
   x: number;
   y: number;
+  active: boolean;
+  onClick: Function;
 }
 
 function AttackButton(props: AttackButtonTypes): JSX.Element {
-  const {x, y} = props;
+  const {x, y, active, onClick} = props;
   
   return (
     <button
-      className="attackButton"
+      className={`attackButton ${active ? "" : "red"}`}
       style={{
         left: x,
         top: y,
       }}
-      // onClick={buttonClickHandler}
+      onClick={() => onClick()}
+      disabled={!active}
     >
       Attack
     </button>
