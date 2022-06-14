@@ -9,6 +9,7 @@ import { letterSize, matrixSize } from './helpers/consts';
 import getWords from './helpers/dictionaries';
 import calcLetterSoupPos from './helpers/formulas/calcLetterSoupPos';
 import normalize from './helpers/formulas/normalize';
+import generateRandomLetter from './helpers/generateRandomLetter';
 import repeat from './helpers/repeat';
 import { CurrentSequence, DictWords, LetterType } from './helpers/types';
 
@@ -22,8 +23,6 @@ function App(): JSX.Element {
   const [level, setLevel] = useState<number>(0);
   
   const runAtStart = async () => {
-    // const letters = "abcdefghijklmnopqrstuvwxyz";
-  
     // make random matrix
     // let new_matrix = [];
     // for (let i = 0; i < matrixSize; i++) {
@@ -128,18 +127,35 @@ function App(): JSX.Element {
       }
       return (((currentHealth - attackValue + 50) % 50)) || 50;
     });
+    
+    // Remove used word
+    setSequence([]);
+    
+    // Replace empty spots
+    let new_matrix: any[] = [];
+    repeat(matrixSize, (i: number) => {
+      let line: any = [];
+      repeat(matrixSize, (j: number) => {
+        if (matrix[i][j] === '') {
+          line.push(generateRandomLetter());
+        } else {
+          line.push(matrix[i][j]);
+        }
+      });
+      new_matrix.push(line);
+    });
+    setMatrix(new_matrix);
   }
   
   const scramble = () => {
     setSequence([]);
     
-    const letters = "abcdefghijklmnopqrstuvwxyz";
     // make random matrix
     let new_matrix = [];
     for (let i = 0; i < matrixSize; i++) {
       let line : any = [];
       for (let j = 0; j < matrixSize; j++) {
-        line.push(letters[Math.floor(Math.random() * letters.length)]);
+        line.push(generateRandomLetter());
       }
       new_matrix.push(line);
     }

@@ -3,7 +3,7 @@ import { Dicionary, dictionaryLanguage } from './consts';
 import normalize from './formulas/normalize';
 
 /**
- *
+ * Loads, parses and returns the words from the dictionary
  */
 const getWords = async () => {
   let raw: string = '';

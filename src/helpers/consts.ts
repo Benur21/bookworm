@@ -9,3 +9,5 @@ export enum Dicionary {
   EN,
 }
 export const dictionaryLanguage: Dicionary = Dicionary.PT;
+
+export const letters = "abcdefghijklmnopqrstuvwxyz";
