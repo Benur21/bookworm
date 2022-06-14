@@ -11,7 +11,7 @@ function AttackButton(props: AttackButtonTypes): JSX.Element {
   
   return (
     <button
-      className={`attackButton ${active ? "" : "red"}`}
+      className={`attackButton movable ${active ? "" : "red"}`}
       style={{
         left: x,
         top: y,

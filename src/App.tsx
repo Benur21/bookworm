@@ -1,6 +1,7 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import AttackButton from './components/AttackButton/AttackButton';
+import Enemy from './components/Enemy/Enemy';
 import LetterSoup from './components/LetterSoup/LetterSoup';
 import Sequence from './components/Sequence/Sequence';
 import clearAllTimeouts from './helpers/clearAllTimeouts';
@@ -16,6 +17,9 @@ function App(): JSX.Element {
   const [dictWords, setDictWords] = useState<DictWords>({});
   const [sequence, setSequence] = useState<CurrentSequence>([]);
   const [matrix, setMatrix] = useState<Array<Array<string>>>([]);
+  
+  const [enemyHealth, setEnemyHealth] = useState<number>(50);
+  const [level, setLevel] = useState<number>(0);
   
   const runAtStart = async () => {
     // const letters = "abcdefghijklmnopqrstuvwxyz";
@@ -113,7 +117,17 @@ function App(): JSX.Element {
   };
   
   const attack = () => {
-    console.log("attack")
+    // Get attack value
+    const attackValue = sequence.length;
+    
+    console.log(`attack damage: ${attackValue}`);
+    
+    setEnemyHealth(currentHealth => {
+      if (currentHealth - attackValue <= 0) {
+        setLevel(currentLevel => currentLevel + 1);
+      }
+      return (((currentHealth - attackValue + 50) % 50)) || 50;
+    });
   }
   
   const scramble = () => {
@@ -151,6 +165,13 @@ function App(): JSX.Element {
         y={600}
         active={currValidWord.length > 0}
         onClick={attack}
+      />
+      <Enemy
+        x={window.innerWidth * 0.78}
+        y={70}
+        health={enemyHealth}
+        maxHealth={50}
+        level={level}
       />
       <button onClick={scramble}>scramble</button>
     </div>

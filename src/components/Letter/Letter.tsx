@@ -24,7 +24,7 @@ function Letter(props: LetterTypes): JSX.Element {
   
   return (
     <div
-      className={`letterBorder ${bright ? 'bright' : ''}`}
+      className={`letterBorder movable ${bright ? 'bright' : ''}`}
       style={{
         left: x,
         top: y,

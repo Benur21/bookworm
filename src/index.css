@@ -46,9 +46,6 @@ body {
   width: calc(var(--letterSize) + var(--letterBorderSize));
   height: calc(var(--letterSize) + var(--letterBorderSize));
   
-  /* position absolute is important to allow use of top and left*/
-  position: absolute;
-  
   box-sizing: border-box;
   background-color: yellow;
   padding: 2px;
@@ -58,9 +55,6 @@ body {
   width: calc(var(--letterSize) * 4 + var(--letterBorderSize));
   height: 50px;
   
-  /* position absolute is important to allow use of top and left*/
-  position: absolute;
-  
   background-color: greenyellow;
   color: black;
   font-family: 'Times New Roman', Times, serif;
@@ -69,4 +63,14 @@ body {
 
 .red {
   background-color: red;
+}
+
+.movable {
+  /* position absolute is important to allow use of top and left*/
+  position: absolute;
+}
+
+.enemy {
+  font-size: large;
+  font-family: 'Times New Roman', Times, serif;
 }
