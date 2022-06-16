@@ -2,6 +2,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import AttackButton from './components/AttackButton/AttackButton';
 import Enemy from './components/Enemy/Enemy';
+import LangSelector from './components/LangSelector/LangSelector';
 import LetterSoup from './components/LetterSoup/LetterSoup';
 import Sequence from './components/Sequence/Sequence';
 import clearAllTimeouts from './helpers/clearAllTimeouts';
@@ -189,6 +190,7 @@ function App(): JSX.Element {
         maxHealth={50}
         level={level}
       />
+      <LangSelector x={50} y={50}/>
       <button onClick={scramble}>scramble</button>
     </div>
   );
