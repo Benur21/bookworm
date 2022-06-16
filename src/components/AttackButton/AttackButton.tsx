@@ -1,3 +1,4 @@
+import i18n from "../../helpers/i18n";
 
 interface AttackButtonTypes {
   x: number;
@@ -19,7 +20,7 @@ function AttackButton(props: AttackButtonTypes): JSX.Element {
       onClick={() => onClick()}
       disabled={!active}
     >
-      Attack
+      {i18n("attackButton", "Attack", "pt")}
     </button>
   );
 }
