@@ -20,7 +20,7 @@ function AttackButton(props: AttackButtonTypes): JSX.Element {
       onClick={() => onClick()}
       disabled={!active}
     >
-      {i18n("attackButton", "Attack", "pt")}
+      {i18n("btn.attack")}
     </button>
   );
 }
