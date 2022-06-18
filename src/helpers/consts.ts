@@ -10,4 +10,10 @@ export enum Dicionary {
 }
 export const dictionaryLanguage: Dicionary = Dicionary.PT;
 
+export enum Language {
+  EN = 'en',
+  PT = 'pt',
+}
+export const fallBackLang = Language.EN;
+
 export const letters = "abcdefghijklmnopqrstuvwxyz";

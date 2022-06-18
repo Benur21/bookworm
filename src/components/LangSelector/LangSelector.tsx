@@ -24,9 +24,14 @@ function LangSelector(props: LangSelectorTypes): JSX.Element {
     >
       <label htmlFor="language">{i18n('label.language')}:</label>
       <br />
-      <select name="language" id="language" onChange={changeLanguage}>
+      <select
+        name="language"
+        id="language"
+        defaultValue={i18n.getSelectedLang()}
+        onChange={changeLanguage}
+      >
         {i18n.langs.map(lang => (
-          <option value={lang} selected={lang === localStorage.getItem('lang')}>
+          <option key={lang} value={lang}>
             {i18n('lang.title', undefined, lang)}
           </option>
         ))}
