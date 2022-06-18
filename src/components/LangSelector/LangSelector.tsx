@@ -9,10 +9,10 @@ interface LangSelectorTypes {
 function LangSelector(props: LangSelectorTypes): JSX.Element {
   const {x, y} = props;
   
-  const changeLanguage = (ev: any) => {
-    localStorage.setItem("lang", ev.target.value);
+  const changeLanguage: React.ChangeEventHandler<HTMLSelectElement> = ev => {
+    localStorage.setItem('lang', ev.target.value);
     render();
-  }
+  };
   
   return (
     <div
