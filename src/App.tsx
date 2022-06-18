@@ -11,6 +11,7 @@ import getWords from './helpers/dictionaries';
 import calcLetterSoupPos from './helpers/formulas/calcLetterSoupPos';
 import normalize from './helpers/formulas/normalize';
 import generateRandomLetter from './helpers/generateRandomLetter';
+import i18n from './helpers/i18n';
 import repeat from './helpers/repeat';
 import { CurrentSequence, DictWords, LetterType } from './helpers/types';
 
@@ -190,8 +191,8 @@ function App(): JSX.Element {
         maxHealth={50}
         level={level}
       />
-      <LangSelector x={50} y={50}/>
-      <button onClick={scramble}>scramble</button>
+      <LangSelector x={50} y={50} />
+      <button onClick={scramble}>{i18n('btn.scramble')}</button>
     </div>
   );
 }
