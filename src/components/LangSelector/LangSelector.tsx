@@ -27,7 +27,7 @@ function LangSelector(props: LangSelectorTypes): JSX.Element {
       <select
         name="language"
         id="language"
-        defaultValue={i18n.getSelectedLang()}
+        value={i18n.getSelectedLang()}
         onChange={changeLanguage}
       >
         {i18n.langs.map(lang => (
