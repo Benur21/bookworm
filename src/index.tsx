@@ -2,10 +2,10 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 
-export function render() {
+export function renderApp() {
   ReactDOM.render(<App />, document.getElementById('root'));
 }
 
-render();
+renderApp();
 
-window.addEventListener('resize', render);
+window.addEventListener('resize', renderApp);

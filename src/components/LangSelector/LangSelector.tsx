@@ -1,4 +1,4 @@
-import { render } from "../../index";
+import { renderApp } from "../../index";
 import i18n from "../../helpers/i18n";
 
 interface LangSelectorTypes {
@@ -11,7 +11,7 @@ function LangSelector(props: LangSelectorTypes): JSX.Element {
   
   const changeLanguage: React.ChangeEventHandler<HTMLSelectElement> = ev => {
     localStorage.setItem('lang', ev.target.value);
-    render();
+    renderApp(); // rerender app to update texts
   };
   
   return (
