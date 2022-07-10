@@ -6,7 +6,7 @@ import LangSelector from './components/LangSelector/LangSelector';
 import LetterSoup from './components/LetterSoup/LetterSoup';
 import Sequence from './components/Sequence/Sequence';
 import clearAllTimeouts from './helpers/clearAllTimeouts';
-import { letterSize, matrixSize } from './helpers/consts';
+import { letters, letterSize, matrixSize } from './helpers/consts';
 import getWords from './helpers/dictionaries';
 import calcLetterSoupPos from './helpers/formulas/calcLetterSoupPos';
 import normalize from './helpers/formulas/normalize';
@@ -36,10 +36,10 @@ function App(): JSX.Element {
     // }
     // setMatrix(new_matrix);
     setMatrix([
-      ['a', 'a', 'b', 'o'],
+      ['a', 'p', 'b', 'o'],
       ['b', 'a', 'c', 'z'],
       ['m', 'e', 'u', 'a'],
-      ['a', 'i', 'n', 'm'],
+      ['r', 'i', 'n', 'm'],
     ]);
     
     console.time("loadingWords");
@@ -79,6 +79,31 @@ function App(): JSX.Element {
 
     return () => clearAllTimeouts();
   }, [sequence, checkWord]);
+  
+  useEffect(() => {
+    const dictWordsString = Object.keys(dictWords).join("");
+    
+    let letterUsage: {[key: string]: number} = {};
+    let total: number = 0;
+    repeat(letters.length, (i: number) => {
+      letterUsage[letters[i]] = dictWordsString.split(letters[i]).length - 1;
+      total += dictWordsString.split(letters[i]).length - 1;
+    });
+    
+    let letterUsagePerc = letterUsage;
+    for (const letter in letterUsagePerc) {
+      if (Object.prototype.hasOwnProperty.call(letterUsagePerc, letter)) {
+        const count = letterUsagePerc[letter];
+        letterUsagePerc[letter] = count/total*100;
+      }
+    }
+    console.log("~ letterUsage", letterUsage);
+    console.log("~ letterUsagePerc", letterUsagePerc);
+    console.log("~ total", total);
+    
+
+    return () => clearAllTimeouts();
+  }, [dictWords]);
   
   const letterAddHandler = (new_letter: LetterType) => {
     // add letter to sequence
