@@ -14,10 +14,15 @@ import generateRandomLetter from './helpers/generateRandomLetter';
 import i18n from './helpers/i18n';
 import repeat from './helpers/repeat';
 import { CurrentSequence, DictWords, LetterType } from './helpers/types';
+import { useUpdateEffect } from 'usehooks-ts'
+
 
 function App(): JSX.Element {
   const [currValidWord, setCurrValidWord] = useState<string>('');
   const [dictWords, setDictWords] = useState<DictWords>({});
+  const [letterUsagePerc, setLetterUsagePerc] = useState<{
+    [key: string]: number;
+  }>({});
   const [sequence, setSequence] = useState<CurrentSequence>([]);
   const [matrix, setMatrix] = useState<Array<Array<string>>>([]);
   
@@ -35,6 +40,8 @@ function App(): JSX.Element {
     //   new_matrix.push(line);
     // }
     // setMatrix(new_matrix);
+    
+    // Build fixed matrix at the start so it's easier to test
     setMatrix([
       ['a', 'p', 'b', 'o'],
       ['b', 'a', 'c', 'z'],
@@ -80,7 +87,7 @@ function App(): JSX.Element {
     return () => clearAllTimeouts();
   }, [sequence, checkWord]);
   
-  useEffect(() => {
+  useUpdateEffect(() => {
     const dictWordsString = Object.keys(dictWords).join("");
     
     let letterUsage: {[key: string]: number} = {};
@@ -100,6 +107,7 @@ function App(): JSX.Element {
     console.log("~ letterUsage", letterUsage);
     console.log("~ letterUsagePerc", letterUsagePerc);
     console.log("~ total", total);
+    setLetterUsagePerc(letterUsagePerc);
     
 
     return () => clearAllTimeouts();
@@ -164,7 +172,7 @@ function App(): JSX.Element {
       let line: any = [];
       repeat(matrixSize, (j: number) => {
         if (matrix[i][j] === '') {
-          line.push(generateRandomLetter());
+          line.push(generateRandomLetter(letterUsagePerc));
         } else {
           line.push(matrix[i][j]);
         }
@@ -182,7 +190,7 @@ function App(): JSX.Element {
     for (let i = 0; i < matrixSize; i++) {
       let line : any = [];
       for (let j = 0; j < matrixSize; j++) {
-        line.push(generateRandomLetter());
+        line.push(generateRandomLetter(letterUsagePerc));
       }
       new_matrix.push(line);
     }
