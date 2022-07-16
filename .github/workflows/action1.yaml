@@ -50,7 +50,7 @@ jobs:
           echo "Git add .:"
           git add .
           echo "Commit:"
-          git commit -m "deploy: ${{ github.sha }}"
+          git commit -m "deploy: ${{ github.sha }}" --allow-empty
           echo "Git status:"
           git status
           echo "Git log:"
