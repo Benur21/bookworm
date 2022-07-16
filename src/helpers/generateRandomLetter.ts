@@ -14,7 +14,6 @@ const generateRandomLetter = (letterUsagePerc: { [key: string]: number }) => {
   let total = 0;
   let letter;
   for (letter in letterUsagePerc) {
-    console.log("~ total", total);
     if (choice >= total && choice < total + letterUsagePerc[letter]) {
       break;
     }
