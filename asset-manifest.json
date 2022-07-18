@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/bookworm/static/css/main.858c912b.css",
-    "main.js": "/bookworm/static/js/main.02e04dc2.js",
+    "main.css": "/bookworm/static/css/main.6b47d598.css",
+    "main.js": "/bookworm/static/js/main.98732f51.js",
     "static/js/637.aab6ff71.chunk.js": "/bookworm/static/js/637.aab6ff71.chunk.js",
     "static/js/263.39be0c9d.chunk.js": "/bookworm/static/js/263.39be0c9d.chunk.js",
     "index.html": "/bookworm/index.html",
-    "main.858c912b.css.map": "/bookworm/static/css/main.858c912b.css.map",
-    "main.02e04dc2.js.map": "/bookworm/static/js/main.02e04dc2.js.map",
+    "main.6b47d598.css.map": "/bookworm/static/css/main.6b47d598.css.map",
+    "main.98732f51.js.map": "/bookworm/static/js/main.98732f51.js.map",
     "637.aab6ff71.chunk.js.map": "/bookworm/static/js/637.aab6ff71.chunk.js.map",
     "263.39be0c9d.chunk.js.map": "/bookworm/static/js/263.39be0c9d.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.858c912b.css",
-    "static/js/main.02e04dc2.js"
+    "static/css/main.6b47d598.css",
+    "static/js/main.98732f51.js"
   ]
 }
