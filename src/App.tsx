@@ -1,6 +1,6 @@
 
 import { useCallback, useEffect, useState } from 'react';
-import AttackButton from './components/AttackButton/AttackButton';
+import Button from './components/Button/Button';
 import Enemy from './components/Enemy/Enemy';
 import LangSelector from './components/LangSelector/LangSelector';
 import LetterSoup from './components/LetterSoup/LetterSoup';
@@ -199,6 +199,14 @@ function App(): JSX.Element {
 
   return (
     <div className="App">
+      <Button
+        x={150}
+        y={window.innerHeight - 70}
+        className="scrambleButton"
+        onClick={scramble}
+      >
+        {i18n('btn.scramble')}
+      </Button>
       <Sequence
         y={100}
         sequence={sequence}
@@ -207,16 +215,19 @@ function App(): JSX.Element {
       />
       <LetterSoup
         x={calcLetterSoupPos()}
-        y={350}
+        y={window.innerHeight - 320}
         matrix={matrix}
         onLetterClick={letterAddHandler}
       />
-      <AttackButton
+      <Button
         x={calcLetterSoupPos()}
-        y={600}
+        y={window.innerHeight - 70}
+        className="attackButton"
         active={currValidWord.length > 0}
         onClick={attack}
-      />
+      >
+        {i18n('btn.attack')}
+      </Button>
       <Enemy
         x={window.innerWidth * 0.78}
         y={70}
@@ -225,7 +236,6 @@ function App(): JSX.Element {
         level={level}
       />
       <LangSelector x={50} y={50} />
-      <button onClick={scramble}>{i18n('btn.scramble')}</button>
     </div>
   );
 }

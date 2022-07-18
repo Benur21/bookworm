@@ -61,6 +61,16 @@ body {
   font-size: 31px;
 }
 
+.scrambleButton {
+  width: calc(var(--letterSize) * 4 + var(--letterBorderSize));
+  height: 50px;
+  
+  background-color: rgb(255, 206, 47);
+  color: black;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 31px;
+}
+
 .red {
   background-color: red;
 }
