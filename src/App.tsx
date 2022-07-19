@@ -18,6 +18,7 @@ import { useUpdateEffect } from 'usehooks-ts'
 import Letter from './components/Letter/Letter';
 import instaDelay from './helpers/instaDelay';
 import calcLetterPos from './helpers/formulas/calcLetterPos';
+import { LoadingIcon } from './components/images/LoadingIcon';
 
 
 function App(): JSX.Element {
@@ -286,6 +287,7 @@ function App(): JSX.Element {
           letter={{ char: animationLetterChar, left: -1, top: -1 }}
         />
       )}
+      <LoadingIcon/>
     </div>
   );
 }
