@@ -6,7 +6,10 @@ import { letterSize, matrixSize } from "../consts";
  * Just to centralize the formula.
  */
 const calcLetterSoupPos = () => {
-  return window.innerWidth / 2 - (letterSize * matrixSize) / 2;
+  return {
+    x: window.innerWidth / 2 - (letterSize * matrixSize) / 2,
+    y: window.innerHeight - 320,
+  };
 };
 
 export default calcLetterSoupPos;

@@ -15,6 +15,9 @@ import i18n from './helpers/i18n';
 import repeat from './helpers/repeat';
 import { CurrentSequence, DictWords, LetterType } from './helpers/types';
 import { useUpdateEffect } from 'usehooks-ts'
+import Letter from './components/Letter/Letter';
+import instaDelay from './helpers/instaDelay';
+import calcLetterPos from './helpers/formulas/calcLetterPos';
 
 
 function App(): JSX.Element {
@@ -28,6 +31,12 @@ function App(): JSX.Element {
   
   const [enemyHealth, setEnemyHealth] = useState<number>(50);
   const [level, setLevel] = useState<number>(0);
+  
+  const [animationLetterX, setAnimationLetterX] = useState<number>(0);
+  const [animationLetterY, setAnimationLetterY] = useState<number>(0);
+  const [animationLetterChar, setAnimationLetterChar] = useState<string>('');
+  const [animationLetterVisible, setAnimationLetterVisible] =
+    useState<boolean>(false);
   
   const runAtStart = async () => {
     // make random matrix
@@ -104,18 +113,20 @@ function App(): JSX.Element {
         letterUsagePerc[letter] = count/total*100;
       }
     }
-    console.log("~ letterUsage", letterUsage);
-    console.log("~ letterUsagePerc", letterUsagePerc);
-    console.log("~ total", total);
+    console.groupCollapsed("~ letterUsage");
+    console.table(letterUsage);
+    console.groupEnd();
+    console.groupCollapsed("~ letterUsagePerc");
+    console.table(letterUsagePerc);
+    console.groupEnd();
+    console.log("~ total letters", total);
     setLetterUsagePerc(letterUsagePerc);
     
 
     return () => clearAllTimeouts();
   }, [dictWords]);
   
-  const letterAddHandler = (new_letter: LetterType) => {
-    // add letter to sequence
-    setSequence(prevSequence => [...prevSequence, new_letter]);
+  const letterAddHandler = async (new_letter: LetterType) => {
     // remove letter from sequence
     setMatrix(prevMatrix =>
       prevMatrix.map((line, line_index) =>
@@ -126,6 +137,38 @@ function App(): JSX.Element {
         )
       )
     );
+    
+    // animate
+    const sequenceX =
+      window.innerWidth / 2 - ((sequence.length + 1) * letterSize) / 2;
+    
+    const startPosX = calcLetterPos(calcLetterSoupPos().x, new_letter.left);
+    const startPosY = calcLetterPos(calcLetterSoupPos().y, new_letter.top);
+    const finalPosX = sequenceX + letterSize * sequence.length;
+    const finalPosY = 100;
+    const animationDuration = 500; // milliseconds
+    
+    setAnimationLetterX(startPosX);
+    setAnimationLetterY(startPosY);
+    setAnimationLetterChar(new_letter.char);
+    setAnimationLetterVisible(true);
+    
+    const frameMs = 20;
+    
+    const distanceX = finalPosX - startPosX;
+    const distanceY = finalPosY - startPosY;
+    const n = Math.floor(animationDuration / frameMs);
+    const incrX = (distanceX * frameMs) / animationDuration;
+    const incrY = (distanceY * frameMs) / animationDuration;
+    for (let i = 0; i < n; i++) {
+      setAnimationLetterX(x => x + incrX);
+      setAnimationLetterY(y => y + incrY);
+      await instaDelay();
+    }
+    setAnimationLetterVisible(false);
+    
+    // add letter to sequence
+    setSequence(prevSequence => [...prevSequence, new_letter]);
   };
 
   const sequence_x = window.innerWidth/2 - sequence.length*letterSize/2;
@@ -214,13 +257,13 @@ function App(): JSX.Element {
         valid={currValidWord}
       />
       <LetterSoup
-        x={calcLetterSoupPos()}
-        y={window.innerHeight - 320}
+        x={calcLetterSoupPos().x}
+        y={calcLetterSoupPos().y}
         matrix={matrix}
         onLetterClick={letterAddHandler}
       />
       <Button
-        x={calcLetterSoupPos()}
+        x={calcLetterSoupPos().x}
         y={window.innerHeight - 70}
         className="attackButton"
         active={currValidWord.length > 0}
@@ -236,6 +279,13 @@ function App(): JSX.Element {
         level={level}
       />
       <LangSelector x={50} y={50} />
+      {animationLetterVisible && (
+        <Letter
+          x={animationLetterX}
+          y={animationLetterY}
+          letter={{ char: animationLetterChar, left: -1, top: -1 }}
+        />
+      )}
     </div>
   );
 }
