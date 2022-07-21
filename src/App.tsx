@@ -30,14 +30,15 @@ function App(): JSX.Element {
   const [sequence, setSequence] = useState<CurrentSequence>([]);
   const [matrix, setMatrix] = useState<Array<Array<string>>>([]);
   
-  const [enemyHealth, setEnemyHealth] = useState<number>(50);
-  const [level, setLevel] = useState<number>(0);
+  const [enemyHealth, setEnemyHealth] = useState(50);
+  const [level, setLevel] = useState(0);
   
-  const [animationLetterX, setAnimationLetterX] = useState<number>(0);
-  const [animationLetterY, setAnimationLetterY] = useState<number>(0);
-  const [animationLetterChar, setAnimationLetterChar] = useState<string>('');
-  const [animationLetterVisible, setAnimationLetterVisible] =
-    useState<boolean>(false);
+  const [animationLetterX, setAnimationLetterX] = useState(0);
+  const [animationLetterY, setAnimationLetterY] = useState(0);
+  const [animationLetterChar, setAnimationLetterChar] = useState('');
+  const [animationLetterVisible, setAnimationLetterVisible] = useState(false);
+    
+  const [loading, setLoading] = useState(true);
   
   const runAtStart = async () => {
     // make random matrix
@@ -59,9 +60,11 @@ function App(): JSX.Element {
       ['r', 'i', 'n', 'm'],
     ]);
     
+    setLoading(true);
     console.time("loadingWords");
     setDictWords(await getWords());
     console.timeEnd("loadingWords");
+    setLoading(false);
   };
 
   /**
@@ -98,6 +101,8 @@ function App(): JSX.Element {
   }, [sequence, checkWord]);
   
   useUpdateEffect(() => {
+    // heavy job
+    setLoading(true);
     const dictWordsString = Object.keys(dictWords).join("");
     
     let letterUsage: {[key: string]: number} = {};
@@ -122,7 +127,7 @@ function App(): JSX.Element {
     console.groupEnd();
     console.log("~ total letters", total);
     setLetterUsagePerc(letterUsagePerc);
-    
+    setLoading(false);
 
     return () => clearAllTimeouts();
   }, [dictWords]);
@@ -241,7 +246,9 @@ function App(): JSX.Element {
     setMatrix(new_matrix);
   }
 
-  return (
+  return loading ? (
+    <LoadingIcon />
+  ) : (
     <div className="App">
       <Button
         x={150}
@@ -287,7 +294,6 @@ function App(): JSX.Element {
           letter={{ char: animationLetterChar, left: -1, top: -1 }}
         />
       )}
-      <LoadingIcon/>
     </div>
   );
 }
