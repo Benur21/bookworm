@@ -8,7 +8,7 @@ export enum Dicionary {
   PT,
   EN,
 }
-export const dictionaryLanguage: Dicionary = Dicionary.PT;
+export const dictionaryLanguage: Dicionary = Dicionary.EN;
 
 export enum Language {
   EN = 'en',
