@@ -126,7 +126,7 @@ body {
   -o-animation: rotating 2s linear reverse infinite;
   animation: rotating 2s linear reverse infinite;
 }
-.loadingIcon {
+.centered {
   position: relative;
   top: 50%;
   left: 50%;

@@ -247,7 +247,10 @@ function App(): JSX.Element {
   }
 
   return loading ? (
-    <LoadingIcon />
+    <>
+      <LoadingIcon />
+      <div className="centered">Loading Dictionaries...</div>
+    </>
   ) : (
     <div className="App">
       <Button

@@ -1,7 +1,7 @@
 
 export const LoadingIcon = () => {
   return (
-    <div className={`loadingIcon`}>
+    <div className={`centered`}>
       <svg
         className="rotating"
         xmlSpace="preserve"
