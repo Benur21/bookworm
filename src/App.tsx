@@ -57,7 +57,7 @@ function App(): JSX.Element {
       ['a', 'p', 'b', 'o'],
       ['b', 'a', 'c', 'z'],
       ['m', 'e', 'u', 'a'],
-      ['r', 'i', 'n', 'm'],
+      ['r', 'y', 'n', 'm'],
     ]);
     
     setLoading(true);
