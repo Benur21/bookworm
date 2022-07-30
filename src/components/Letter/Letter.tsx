@@ -29,7 +29,7 @@ function Letter(props: LetterTypes): JSX.Element {
         left: x,
         top: y,
       }}
-      onClick={onLetterClickHandler}
+      onMouseDown={onLetterClickHandler}
     >
       <div className={`letter ${bright ? 'bright' : ''}`}>{letter.char}</div>
     </div>
