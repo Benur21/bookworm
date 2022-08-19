@@ -18,8 +18,8 @@ import { useUpdateEffect } from 'usehooks-ts'
 import Letter from './components/Letter/Letter';
 import instaDelay from './helpers/instaDelay';
 import calcLetterPos from './helpers/formulas/calcLetterPos';
-import { LoadingIcon } from './components/images/LoadingIcon';
-
+import { LoadingIcon } from './assets/LoadingIcon';
+import Stickman from './assets/Stickman';
 
 function App(): JSX.Element {
   const [currValidWord, setCurrValidWord] = useState<string>('');
@@ -283,8 +283,8 @@ function App(): JSX.Element {
         {i18n('btn.attack')}
       </Button>
       <Enemy
-        x={window.innerWidth * 0.78}
-        y={70}
+        x={window.innerWidth * 0.7071}
+        y={50}
         health={enemyHealth}
         maxHealth={50}
         level={level}
@@ -297,6 +297,7 @@ function App(): JSX.Element {
           letter={{ char: animationLetterChar, left: -1, top: -1 }}
         />
       )}
+      <Stickman x={200} y={100} color="blue" />
     </div>
   );
 }

@@ -1,3 +1,6 @@
+import Stickman from "../../assets/Stickman";
+import i18n from "../../helpers/i18n";
+import ProgressBar from "../ProgressBar/ProgressBar";
 
 interface EnemyTypes {
   x: number;
@@ -18,7 +21,12 @@ function Enemy(props: EnemyTypes): JSX.Element {
         top: y,
       }}
     >
-      {level} {health}/{maxHealth}
+      <ProgressBar x={0} y={0} maxVal={maxHealth} currentVal={health} />
+      {/* <ProgressBar x={0} y={0} maxVal={100} currentVal={5} /> */}
+      <br />
+      <br />
+      {i18n("label.level")}: {level}
+      <Stickman x={100} y={40} />
     </div>
   );
 }
