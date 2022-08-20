@@ -1,3 +1,4 @@
+/* eslint-disable */
 interface ProgressBarTypes {
   x: number;
   y: number;
