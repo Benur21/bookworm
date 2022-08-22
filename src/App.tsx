@@ -249,7 +249,7 @@ function App(): JSX.Element {
   return loading ? (
     <>
       <LoadingIcon />
-      <div className="centered">Loading Dictionaries...</div>
+      <div className="centered">i18n("label.loading")</div>
     </>
   ) : (
     <div className="App">
