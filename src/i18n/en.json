@@ -3,5 +3,6 @@
   "btn.attack" : "Attack",
   "btn.scramble" : "Scramble",
   "label.language" : "Language",
-  "label.level": "Level"
+  "label.level": "Level",
+  "label.loading": "Loading Dictionaries..."
 }
