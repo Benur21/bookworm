@@ -3,5 +3,6 @@
   "btn.attack" : "Atacar",
   "btn.scramble" : "Baralhar",
   "label.language" : "Idioma",
-  "label.level": "Nível"
+  "label.level": "Nível",
+  "label.loading": "A Carregar Dicionários..."
 }
