@@ -16,10 +16,10 @@ import repeat from './helpers/repeat';
 import { CurrentSequence, DictWords, LetterType } from './helpers/types';
 import { useUpdateEffect } from 'usehooks-ts'
 import Letter from './components/Letter/Letter';
+import MainPlayer from './components/MainPlayer/MainPlayer';
 import instaDelay from './helpers/instaDelay';
 import calcLetterPos from './helpers/formulas/calcLetterPos';
 import { LoadingIcon } from './assets/LoadingIcon';
-import Stickman from './assets/Stickman';
 
 function App(): JSX.Element {
   const [currValidWord, setCurrValidWord] = useState<string>('');
@@ -289,7 +289,7 @@ function App(): JSX.Element {
         maxHealth={50}
         level={level}
       />
-      <LangSelector x={50} y={50} />
+      <LangSelector x={20} y={20} />
       {animationLetterVisible && (
         <Letter
           x={animationLetterX}
@@ -297,7 +297,7 @@ function App(): JSX.Element {
           letter={{ char: animationLetterChar, left: -1, top: -1 }}
         />
       )}
-      <Stickman x={200} y={100} color="blue" />
+      <MainPlayer x={155} y={90} />
     </div>
   );
 }
