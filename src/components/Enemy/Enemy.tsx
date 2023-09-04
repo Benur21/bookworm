@@ -1,6 +1,8 @@
 import Stickman from "../../assets/Stickman";
 import i18n from "../../helpers/i18n";
+import instaDelay from "../../helpers/instaDelay";
 import ProgressBar from "../ProgressBar/ProgressBar";
+import { useEffect, useState } from 'react';
 
 interface EnemyTypes {
   x: number;
@@ -8,10 +10,25 @@ interface EnemyTypes {
   health: number;
   maxHealth?: number;
   level?: number;
+  dead?: boolean;
 }
 
 function Enemy(props: EnemyTypes): JSX.Element {
-  const {x, y, health, maxHealth = 100, level = 0} = props;
+  const {x, y, health, maxHealth = 100, level = 0, dead = false} = props;
+  
+  const [rotation, setRotation] = useState(0);
+  
+  useEffect(() => {
+    setRotation(0);
+    if (dead) {
+      (async () => {
+        for (let i = 0; i < 45; i++) {
+          setRotation(prevRotation => prevRotation + 2);
+          await instaDelay();
+        }
+      })();
+    }
+  }, [dead]);
   
   return (
     <div
@@ -26,7 +43,7 @@ function Enemy(props: EnemyTypes): JSX.Element {
       <br />
       <br />
       {i18n("label.level")}: {level}
-      <Stickman x={100} y={40} />
+      <Stickman x={100} y={40} rotation={rotation} />
     </div>
   );
 }

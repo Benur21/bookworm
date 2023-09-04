@@ -32,6 +32,7 @@ function App(): JSX.Element {
   
   const [enemyHealth, setEnemyHealth] = useState(50);
   const [level, setLevel] = useState(0);
+  const [dead, setDead] = useState(false);
   
   const [animationLetterX, setAnimationLetterX] = useState(0);
   const [animationLetterY, setAnimationLetterY] = useState(0);
@@ -208,6 +209,11 @@ function App(): JSX.Element {
     setEnemyHealth(currentHealth => {
       if (currentHealth - attackValue <= 0) {
         setLevel(currentLevel => currentLevel + 1);
+        setDead(true);
+        // TODO timeout isn't working
+        setTimeout(() => {
+          setDead(false);
+        }, 5000)
       }
       return (((currentHealth - attackValue + 50) % 50)) || 50;
     });
@@ -288,6 +294,7 @@ function App(): JSX.Element {
         health={enemyHealth}
         maxHealth={50}
         level={level}
+        dead={dead}
       />
       <LangSelector x={20} y={20} />
       {animationLetterVisible && (

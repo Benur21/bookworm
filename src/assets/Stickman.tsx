@@ -3,10 +3,11 @@ interface StickmanTypes {
   x: number;
   y: number;
   color?: string;
+  rotation?: number;
 }
 
 function Stickman(props: StickmanTypes): JSX.Element {
-  const { x, y, color = "#ff0000"} = props;
+  const { x, y, color = "#ff0000", rotation = 0} = props;
   
   return (
     <div
@@ -14,6 +15,7 @@ function Stickman(props: StickmanTypes): JSX.Element {
       style={{
         left: x,
         top: y,
+        transform: `rotate(${rotation}deg)`
       }}
     >
       <svg width="104" height="254">
